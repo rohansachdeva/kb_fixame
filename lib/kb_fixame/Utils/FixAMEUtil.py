@@ -33,7 +33,6 @@ class FixAMEUtil:
         log('Start validating run_kb_fixame params')
 
         # check for required parameters
-        #for p in ['assembly_ref', 'binned_contig_name', 'workspace_name', 'reads_list']:
         for p in ['assembly_ref', 'workspace_name', 'read_list']:
             if p not in params:
                 raise ValueError('"{}" parameter is required, but missing'.format(p))
@@ -126,7 +125,7 @@ class FixAMEUtil:
             if len(read_list_file_list) == 1:
                 read_files_list = read_list_file[0]
                 read_files_list = [column.strip() for column in read_files_list]
-                forward_read,reverse_read = read_files_list
+                forward_read, reverse_read = read_files_list
                 commands += '-f {} '.format(forward_read)
                 commands += '-r {} '.forward(reverse_read)
 
@@ -140,10 +139,7 @@ class FixAMEUtil:
         command += '-m 1 '
 
         threads = psutil.cpu_count() * self.THREADS_PER_CORE
-        command += '-t {} '.format(threads)  
-
-        #if params.get('thread'):
-        #    command += '-t {} '.format(params.get('thread'))
+        command += '-t {} '.format(threads)
 
         log('Generated FixAME.py command: {}'.format(command))
 
@@ -187,17 +183,17 @@ class FixAMEUtil:
         result_file_path = os.path.join(output_directory, 'report.html')
 
         Overview_Content = ''
-        
-        (input_contig_count, 
-        total_contig_length, 
+
+        (input_contig_count,
+        total_contig_length,
         type_local_assembly_error_bp,
         type_palindrome_length,
         type_direct_repeat_length,
         type_potential_circular_length,
         type_high_variability_bp,
-        total_error_bp, 
+        total_error_bp,
         percent_error_bp) = self._generate_overview_info(assembly_ref, result_directory)
-        
+
         Overview_Content += '<p>Total Input Sequences: {}</p>'.format(input_contig_count)
         Overview_Content += '<p>Total Input Sequence Length: {}</p>'.format(total_contig_length)
         Overview_Content += '<p>Total Local Assembly Error Basepairs : {}</p>'.format(type_local_assembly_error_bp)
@@ -233,11 +229,11 @@ class FixAMEUtil:
 
         for file_name in result_files:
             if file_name == 'fixame_report.tsv':
-                report_list = open(file_name).readlines():
+                report_list = open(file_name).readlines()
 
                 for line in report_list[1:]:
                     line = line.strip().split('\t')
-                    feature_error_type,count = line
+                    feature_error_type, count = line
                     report_dict[feature_error_type] = count
 
                 type_local_assembly_error_basepairs = report_dict['local_assembly_error']
@@ -253,14 +249,14 @@ class FixAMEUtil:
                 percent_error_basepairs = total_error_basepairs / total_contig_length * 100
                 percent_error_basepairs = round(total_error_basepairs, 5)
 
-                return (input_contig_count, 
-                        total_contig_length, 
+                return (input_contig_count,
+                        total_contig_length,
                         type_local_assembly_error_bp,
                         type_palindrome_length,
                         type_direct_repeat_length,
                         type_potential_circular_length,
                         type_high_variability_bp,
-                        total_error_bp, 
+                        total_error_bp,
                         percent_error_bp)
 
     def _generate_report(self, result_directory, params):
@@ -282,14 +278,14 @@ class FixAMEUtil:
         #                         "description": "BinnedContigs from MaxBin2"})
 
         report_params = {
-              'message': '',
-              'workspace_name': params.get('workspace_name'),
-#              'objects_created': created_objects,
-              'file_links': output_files,
-              'html_links': output_html_files,
-              'direct_html_link_index': 0,
-              'html_window_height': 266,
-              'report_object_name': 'kb_fixame_report_' + str(uuid.uuid4())}
+            'message': '',
+            'workspace_name': params.get('workspace_name'),
+            'objects_created': created_objects,
+            'file_links': output_files,
+            'html_links': output_html_files,
+            'direct_html_link_index': 0,
+            'html_window_height': 266,
+            'report_object_name': 'kb_fixame_report_' + str(uuid.uuid4())}
 
         kbase_report_client = KBaseReport(self.callback_url)
         output = kbase_report_client.create_extended_report(report_params)
@@ -307,7 +303,7 @@ class FixAMEUtil:
         self.au = AssemblyUtil(self.callback_url)
         self.mgu = MetagenomeUtils(self.callback_url)
 
-   def run_kb_fixame(self, params):
+    def run_kb_fixame(self, params):
         """
         run_kb_fixame: FixAME.py app
 
@@ -320,8 +316,8 @@ class FixAMEUtil:
         log('--->\nrunning FixAMEUtil.run_kb_fixame\n' +
             'params:\n{}'.format(json.dumps(params, indent=1)))
 
-       self._validate_run_kb_fixame_params(params)
-#        params['out_header'] = 'Bin'
+        self._validate_run_kb_fixame_params(params)
+        #        params['out_header'] = 'Bin'
 
         contig_file = self._get_contig_file(params.get('assembly_ref'))
         params['contig_file_path'] = contig_file
@@ -344,16 +340,16 @@ class FixAMEUtil:
         log('Saved result files to: {}'.format(result_directory))
         log('Generated files:\n{}'.format('\n'.join(os.listdir(result_directory))))
 
-       generate_binned_contig_param = {
-           'file_directory': result_directory,
-           'assembly_ref': params.get('assembly_ref'),
-#           'binned_contig_name': params.get('binned_contig_name'),
-           'workspace_name': params.get('workspace_name')
-       }
-#        binned_contig_obj_ref = self.mgu.file_to_binned_contigs(
-#                                   generate_binned_contig_param).get('binned_contig_obj_ref')
+        #    generate_binned_contig_param = {
+        #        'file_directory': result_directory,
+        #        'assembly_ref': params.get('assembly_ref'),
+        # #           'binned_contig_name': params.get('binned_contig_name'),
+        #        'workspace_name': params.get('workspace_name')
+        #    }
+        #        binned_contig_obj_ref = self.mgu.file_to_binned_contigs(
+        #                                   generate_binned_contig_param).get('binned_contig_obj_ref')
 
-#        reportVal = self._generate_report(binned_contig_obj_ref, result_directory, params)
+        #        reportVal = self._generate_report(binned_contig_obj_ref, result_directory, params)
         reportVal = self._generate_report(result_directory, params)
         returnVal = {
             'result_directory': result_directory
