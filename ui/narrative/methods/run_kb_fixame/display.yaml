@@ -1,40 +1,64 @@
 #
 # define display information
 #
-name: Method Name Here
+name     : Curate assembled sequences using FixAME
 
-tooltip: |
-    Perform some kind of method
+tooltip  : Find and fix assembly errors in assembled sequences.
 
-screenshots: []
+icon: kb-purple-fixame.png
 
-icon: icon.png
+screenshots:
+    []
 
 #
-# define a set of similar apps that might be useful to the user
+# define a set of similar methods that might be useful to the user
 #
 suggestions:
     apps:
         related:
-            [app1, app2]
+            []
         next:
-            [app3, app4]
+            []
+    methods:
+        related:
+            []
+        next:
+            ["kb_Msuite.run_checkM_lineage_wf"]
 
 #
 # Configure the display and description of parameters
 #
 parameters :
-    parameter_1 :
-        ui-name : |
-            First parameter
-        short-hint : |
-            The first parameter
-        long-hint  : |
-            The first parameter that needs to be entered to drive the method. This might be the first of many.
+    assembly_ref :
+        ui-name : Assembly Object
+        short-hint : The metagenome Assembly object.
+
+    reads_list :
+        ui-name : Read Library Object
+        short-hint : A list of reads object (PairedEndLibrary/SingleEndLibrary) upon which MaxBin will be run.
+
+    min_contig_length :
+        ui-name : Minimum Contig Length
+        short-hint : The minimum contig length (default is 1000 bp).
 
 description : |
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar efficitur felis, quis tincidunt sem congue at. Vivamus ornare feugiat faucibus. Fusce tincidunt mattis nunc, nec varius purus convallis quis. Nulla facilisi. In at magna dolor. Suspendisse sit amet felis at arcu auctor dapibus vitae pharetra dui. Nam semper mi quis tortor fermentum mollis. Donec a arcu pharetra, rutrum dolor vitae, rutrum mauris. Donec ornare fringilla sagittis. Nam laoreet est in elementum malesuada. Vestibulum id mi eget urna hendrerit feugiat. Donec et ultrices nulla. Phasellus diam eros, dapibus at tempus nec, semper vel ante.</p>
+    <p>FixAME find and fixes errors in metagenomic or genomic sequence assemblies.</p>
 
-    <p>Curabitur auctor, metus at tristique euismod, odio elit tincidunt neque, a facilisis sem massa convallis dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc ut hendrerit tellus. Nunc lacinia laoreet finibus. Etiam vitae sagittis enim. Fusce consectetur porta est eu pretium. In hac habitasse platea dictumst. Integer pellentesque sit amet sapien id venenatis. Nullam ac risus at orci eleifend aliquet. Vestibulum elit purus, euismod a nibh quis, pellentesque semper leo. Curabitur ullamcorper felis hendrerit nunc egestas, sit amet pharetra sapien porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas hendrerit ipsum a ligula aliquet vestibulum. Duis a ante urna. Aenean ante neque, rhoncus id luctus ut, accumsan vel nunc.</p>
+    <p><strong>Team members who developed &amp; deployed algorithm in KBase:</strong> Rohan Sachdeva. For questions, please <a href=”http://kbase.us/contact-us/”>contact us</a>.</p>
 
-    <p>Pellentesque accumsan aliquet magna, id consectetur tellus condimentum eu. Suspendisse elit dui, ornare ac leo eget, tincidunt feugiat orci. Maecenas auctor gravida lacinia. Mauris interdum nisi vel gravida varius. Nullam tempus, purus eget posuere aliquet, odio elit semper massa, quis facilisis massa odio vitae lacus. Fusce varius enim a mi vehicula tempus. Maecenas faucibus tellus ipsum, at venenatis ipsum auctor et. Suspendisse sem mi, dignissim id porta efficitur, auctor eget magna. Vivamus varius purus nulla, porttitor euismod lorem cursus quis. Nulla sit amet eros nec sem ultrices pulvinar.</p>
+    <p><b>App Configuration Information:</b>
+    <ul>
+      <li><b><i>Assembly Object:</i></b> The Assembly object is a collection of assembled genome fragments, called "contigs". These are the items that MaxBin2 will bin. Currently, only a single Assembly object is accepted by the MaxBin2 App.</li>
+      <li><b><i>Read Library Object:</i></b> Paired end reads are used to find errors and fix them.</li>
+      <li><b><i>Minimum Contig Length:</i></b> Some assemblies contain shorter contigs that may slow down analysis. These can be of reduced value  in that they may not contain complete genes and may be too short for statistically meaningful nucleotide composition profiles.  A value of 1000 bp is a reasonable cutoff. By setting a larger value (e.g., 2500 bp), once can minimize the contamination of bins by small contigs.</li>
+    </ul>
+    </p>
+
+    <p><b>App Output:</b>
+    <ul>
+      <li><b><i>Output Bin Summary Report:</i></b> A table with the types of errors found and if they were fixed</li>
+      <li><b><i>Downloadable files:</i></b> The entire output of the FixAME run may be downloaded as a zip file.</li>
+    </ul>
+    </p>
+
+#Removed publication text until publication

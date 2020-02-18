@@ -3,22 +3,43 @@
     "authors": [
         "rohansach"
     ],
-    "contact": "",
+    "contact" : "rohansach@berkeley.edu",
     "categories": ["active"],
     "widgets": {
-        "input": null,
-        "output": null
+        "input": "kbaseNarrativeMethodInput"
     },
-    "parameters": [ 
+    "parameters": [
         {
-            "id": "parameter_1",
-            "optional": true,
+            "id": "assembly_ref",
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
             "field_type": "text",
             "text_options": {
-                "valid_ws_types": [ ]
+                "valid_ws_types" : ["KBaseGenomeAnnotations.Assembly"]
+            }
+        },
+        {
+            "id" : "reads_list",
+            "optional" : false,
+            "advanced" : false,
+            "allow_multiple" : true,
+            "default_values" : [ "" ],
+            "field_type" : "text",
+            "text_options" : {
+              "valid_ws_types" : ["KBaseFile.PairedEndLibrary", "KBaseFile.SingleEndLibrary", "KBaseAssembly.PairedEndLibrary", "KBaseAssembly.SingleEndLibrary"]
+            }
+        },
+       {
+            "id": "min_contig_length",
+            "optional": true,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [ "1000" ],
+            "field_type": "text",
+            "text_options": {
+                "validate_as" : "int"
             }
         }
     ],
@@ -31,21 +52,42 @@
                 {
                     "narrative_system_variable": "workspace",
                     "target_property": "workspace_name"
-                },{
-                    "narrative_system_variable": "workspace_id",
-                    "target_property": "workspace_id"
-                },{
-                    "input_parameter": "parameter_1",
-                    "target_property": "parameter_1"
+                },
+                {
+                    "input_parameter": "assembly_ref",
+                    "target_type_transform": "resolved-ref",
+                    "target_property": "assembly_ref"
+                },
+                {
+                    "input_parameter": "reads_list",
+                    "target_type_transform": "list<ref>",
+                    "target_property": "reads_list"
+                },
+                {
+                    "input_parameter": "min_contig_length",
+                    "target_property": "min_contig_length"
                 }
             ],
             "output_mapping": [
                 {
-                    "service_method_output_path": [0,"report_name"],
+                    "narrative_system_variable": "workspace",
+                    "target_property": "wsName"
+                },
+                {
+                    "service_method_output_path": [0, "result_directory"],
+                    "target_property": "result_directory"
+                },
+                {
+                    "service_method_output_path": [0, "report_name"],
                     "target_property": "report_name"
-                },{
-                    "service_method_output_path": [0,"report_ref"],
+                },
+                {
+                    "service_method_output_path": [0, "report_ref"],
                     "target_property": "report_ref"
+                },
+                {
+                    "constant_value": "16",
+                    "target_property": "report_window_line_height"
                 }
             ]
         }
