@@ -47,7 +47,7 @@
         "service-mapping": {
             "url": "",
             "name": "kb_fixame",
-            "method": "run_kb_fixame",
+            "method": "run_fixame",
             "input_mapping": [
                 {
                     "narrative_system_variable": "workspace",
