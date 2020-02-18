@@ -5,9 +5,6 @@ import subprocess
 import sys
 import time
 import uuid
-import zipfile
-
-from Bio import SeqIO
 
 from installed_clients.AssemblyUtilClient import AssemblyUtil
 from installed_clients.DataFileUtilClient import DataFileUtil
@@ -123,11 +120,11 @@ class FixAMEUtil:
         if params.get('reads_list_file'):
             read_list_file_list = open(params.get('reads_list_file')).readlines()
             if len(read_list_file_list) == 1:
-                read_files_list = read_list_file[0]
+                read_files_list = read_list_file_list[0]
                 read_files_list = [column.strip() for column in read_files_list]
                 forward_read, reverse_read = read_files_list
-                commands += '-f {} '.format(forward_read)
-                commands += '-r {} '.forward(reverse_read)
+                command += '-f {} '.format(forward_read)
+                command += '-r {} '.forward(reverse_read)
 
         if params.get('min_contig_length'):
             command += '-l {} '.format(params.get('min_contig_length'))
@@ -221,11 +218,14 @@ class FixAMEUtil:
     def _generate_overview_info(self, assembly_ref, result_directory, report_file):
         assembly = self.dfu.get_objects({'object_refs': [assembly_ref]})['data'][0]
         input_contig_count = assembly.get('data').get('num_contigs')
+        total_contig_length = 0
 
         for contig_id, contig in assembly.get('data').get('contigs').items():
             total_contig_length += int(contig.get('length'))
 
         report_dict = {}
+
+        result_files = os.listdir(result_directory)
 
         for file_name in result_files:
             if file_name == 'fixame_report.tsv':
@@ -236,18 +236,18 @@ class FixAMEUtil:
                     feature_error_type, count = line
                     report_dict[feature_error_type] = count
 
-                type_local_assembly_error_basepairs = report_dict['local_assembly_error']
+                type_local_assembly_error_bp = report_dict['local_assembly_error']
                 type_palindrome_length = report_dict['palindrome']
                 type_direct_repeat_length = report_dict['direct_repeat']
                 type_potential_circular_length = report_dict['potential_circular']
-                type_high_variability_basepairs = report_dict['high_variability']
+                type_high_variability_bp = report_dict['high_variability']
 
-                total_error_basepairs = sum([type_local_assembly_error_basepairs,
+                total_error_bp = sum([type_local_assembly_error_bp,
                                              type_palindrome_length,
                                              type_direct_repeat_length])
 
-                percent_error_basepairs = total_error_basepairs / total_contig_length * 100
-                percent_error_basepairs = round(total_error_basepairs, 5)
+                percent_error_bp = total_error_bp / total_contig_length * 100
+                percent_error_bp = round(total_error_bp, 5)
 
                 return (input_contig_count,
                         total_contig_length,
@@ -273,7 +273,7 @@ class FixAMEUtil:
                                                        binned_contig_obj_ref,
                                                        params.get('out_header'))
 
-        # created_objects = []
+        created_objects = []
         # created_objects.append({"ref": binned_contig_obj_ref,
         #                         "description": "BinnedContigs from MaxBin2"})
 
