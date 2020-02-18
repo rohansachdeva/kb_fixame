@@ -24,7 +24,7 @@ class kb_fixame:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/rohansachdeva/kb_fixame.git"
-    GIT_COMMIT_HASH = "b62eb5a2930d3b1ec18aa41546fef801179c1638"
+    GIT_COMMIT_HASH = "d688e3f6c03e26f70850048ae5e6d12ef5fb9880"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -70,8 +70,24 @@ class kb_fixame:
         """
         # ctx is the context object
         # return variables are: returnVal
-        #BEGIN run_kb_fixame
-        #END run_kb_fixame
+        #BEGIN run_fixame
+        print('--->\nRunning kb_fixame.run_fixame\nparams:')
+        print(json.dumps(params, indent=1))
+
+        for key, value in params.items():
+            if isinstance(value, str):
+                params[key] = value.strip()
+
+        fixame_runner = FixAMEUtil(self.config)
+        returnVal = fixame_runner.run_fixame(params)
+        #END run_fixame
+
+        # At some point might do deeper type checking...
+        if not isinstance(returnVal, dict):
+            raise ValueError('Method run_fixame return value ' +
+                             'returnVal is not type dict as required.')
+        # return the results
+        return [returnVal]
 
         # At some point might do deeper type checking...
         if not isinstance(returnVal, dict):
