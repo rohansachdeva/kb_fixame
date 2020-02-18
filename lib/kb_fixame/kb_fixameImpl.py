@@ -3,7 +3,7 @@
 import os
 import json
 
-from kb_FixAME.Utils.FixAMEUtil import FixAMEUtil
+from kb_fixame.Utils.FixAMEUtil import FixAMEUtil
 #END_HEADER
 
 
