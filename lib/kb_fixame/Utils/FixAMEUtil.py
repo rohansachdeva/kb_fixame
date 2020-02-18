@@ -34,7 +34,7 @@ class FixAMEUtil:
 
         # check for required parameters
         #for p in ['assembly_ref', 'binned_contig_name', 'workspace_name', 'reads_list']:
-        for p in ['assembly_ref', 'workspace_name', 'read_list']
+        for p in ['assembly_ref', 'workspace_name', 'read_list']:
             if p not in params:
                 raise ValueError('"{}" parameter is required, but missing'.format(p))
 
