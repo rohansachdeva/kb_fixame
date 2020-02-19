@@ -8,7 +8,7 @@ MAINTAINER Rohan Sachdeva
 
 
 # To install all the dependencies
-RUN apt-get update && apt-get install -y samtools wget python3 python3-regex python3-biopython python3-psutil #build-essential zlib1g
+RUN apt-get update && apt-get install -y samtools wget python3 python3-regex python3-biopython python3-psutil python3-xopen #build-essential zlib1g
 
 RUN mkdir FixAME && \
 	cd FixAME && \
@@ -21,9 +21,9 @@ RUN mkdir FixAME && \
 	chmod +x bbmap/* && \
 	mv bbmap /kb/deployment/bin && \
 
-	apt-get purge -y build-essential wget && \
-	apt-get autoremove -y && \
-	apt-get clean
+#	apt-get purge -y build-essential wget && \
+#	apt-get autoremove -y && \
+#	apt-get clean
 
 # -----------------------------------------
 
