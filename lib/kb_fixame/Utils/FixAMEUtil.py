@@ -157,6 +157,7 @@ class FixAMEUtil:
  #       report_file = os.path.join(output_directory, 'fixame_report.tsv')
 
         for root, dirs, files in os.walk(result_directory):
+            print(root,dirs,files)
             for file in files:
                 if file == 'fixame_result.tsv':
                     result_file = os.path.join(root, file)
