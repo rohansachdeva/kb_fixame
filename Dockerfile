@@ -22,7 +22,9 @@ RUN mkdir FixAME && \
 	tar zxvf bbmap.tar.gz && \
 	chmod a+x bbmap/* && \
 	cd bbmap && \
-	cp -r * /kb/deployment/bin #&& \
+	cp -r * /usr/local/bin #&& \
+#	cp -r * /kb/deployment/bin #&& \
+#	cp -R bbmap /kb/deployment/bin
 
 #	apt-get purge -y build-essential wget && \
 #	apt-get autoremove -y && \
@@ -30,7 +32,7 @@ RUN mkdir FixAME && \
 
 # -----------------------------------------
 
-ENV PATH /kb/deployment/bin:$PATH
+ENV PATH /kb/deployment/bin/bbmap:$PATH
 
 COPY ./ /kb/module
 RUN mkdir -p /kb/module/work
