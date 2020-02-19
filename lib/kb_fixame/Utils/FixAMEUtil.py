@@ -30,7 +30,7 @@ class FixAMEUtil:
         log('Start validating run_kb_fixame params')
 
         # check for required parameters
-        for p in ['assembly_ref', 'workspace_name', 'read_list']:
+        for p in ['assembly_ref', 'workspace_name', 'reads_list']:
             if p not in params:
                 raise ValueError('"{}" parameter is required, but missing'.format(p))
 
