@@ -12,11 +12,12 @@ RUN apt-get update && apt-get install -y samtools wget build-essential zlib1g-de
 
 RUN pip install Cython && pip install biopython regex psutil xopen pandas pysam
 
-RUN mkdir FixAME && \
-	cd FixAME && \
-	wget https://gist.githubusercontent.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df043d/raw/a5e95eda199f72e93b2efe1612c8516f888a7fec/FixAME.py && \
-	chmod a+x FixAME.py && \
-	cd ../ && \
+#RUN mkdir FixAME && \
+#	cd FixAME && \
+#	wget https://gist.githubusercontent.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df043d/raw/9fcfcaff6d43974fca225a74af4732980957c9a9/FixAME.py && \
+RUN git clone https://gist.github.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df043d && \
+	mv 86bcf2cc974b2c72235638f5e5df043d FixAME && \
+	chmod a+x FixAME/FixAME.py && \
 	mv FixAME /kb/deployment/bin && \
 	wget 'https://downloads.sourceforge.net/project/bbmap/BBMap_38.76.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fbbmap%2Ffiles%2Flatest%2Fdownload&ts=1581407830' -O bbmap.tar.gz && \
 	tar zxvf bbmap.tar.gz && \
