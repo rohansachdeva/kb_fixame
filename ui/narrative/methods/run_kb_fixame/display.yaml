@@ -39,7 +39,7 @@ parameters :
 
     min_contig_length :
         ui-name : Minimum Contig Length
-        short-hint : The minimum contig length (default is 1000 bp).
+        short-hint : The minimum contig length (inclusive - default is 1000 bp).
 
 description : |
     <p>FixAME find and fixes errors in metagenomic or genomic sequence assemblies.</p>
@@ -50,14 +50,14 @@ description : |
     <ul>
       <li><b><i>Assembly Object:</i></b> The Assembly object is a collection of assembled genome fragments, called "contigs". These are the items that FixAME will find error and fix. Currently, only a single Assembly object is accepted by the FixAME App.</li>
       <li><b><i>Read Library Object:</i></b> Paired end reads are used to find errors and fix them.</li>
-      <li><b><i>Minimum Contig Length:</i></b> Some assemblies contain shorter contigs that may slow down analysis. 
+      <li><b><i>Minimum Contig Length:</i></b> Inclusive cutoff for contig length.  
     </ul>
     </p>
 
     <p><b>App Output:</b>
     <ul>
       <li><b><i>Output Summary Report:</i></b> A table with the types of errors found and if they were fixed</li>
-      <li><b><i>Downloadable files:</i></b> Out of FixAME for download.</li>
+      <li><b><i>Downloadable files:</i></b> Output of FixAME for download.</li>
     </ul>
     </p>
 
