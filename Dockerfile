@@ -8,7 +8,9 @@ MAINTAINER Rohan Sachdeva
 
 
 # To install all the dependencies
-RUN apt-get update && apt-get install -y samtools wget python3 python3-regex python3-biopython python3-psutil python3-xopen #build-essential zlib1g
+RUN apt-get update && apt-get install -y samtools wget
+
+RUN pip install biopython regex psutil xopen pandas pysam
 
 RUN mkdir FixAME && \
 	cd FixAME && \
