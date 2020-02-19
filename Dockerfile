@@ -8,9 +8,9 @@ MAINTAINER Rohan Sachdeva
 
 
 # To install all the dependencies
-RUN apt-get update && apt-get install -y samtools wget build-essential
+RUN apt-get update && apt-get install -y samtools wget build-essential zlib1g-dev libbz2-dev
 
-RUN pip install --upgrade pip && pip install Cython && pip install biopython regex psutil xopen pandas pysam
+RUN pip install Cython && pip install biopython regex psutil xopen pandas pysam
 
 RUN mkdir FixAME && \
 	cd FixAME && \
@@ -29,6 +29,8 @@ RUN mkdir FixAME && \
 #	apt-get clean
 
 # -----------------------------------------
+
+ENV PATH /kb/deployment/bin:$PATH
 
 COPY ./ /kb/module
 RUN mkdir -p /kb/module/work
