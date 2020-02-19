@@ -27,7 +27,7 @@ RUN mkdir FixAME && \
 
 # -----------------------------------------
 
-ENV PATH=/kb/deployment/bin/bbmap:$PATH
+ENV PATH=/kb/deployment/bin/FixAME:/kb/deployment/bin/bbmap:$PATH
 
 COPY ./ /kb/module
 RUN mkdir -p /kb/module/work

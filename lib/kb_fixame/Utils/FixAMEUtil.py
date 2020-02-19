@@ -59,10 +59,10 @@ class FixAMEUtil:
         exitCode = pipe.returncode
 
         if (exitCode == 0):
-            log('Executed commend:\n{}\n'.format(command) +
+            log('Executed command:\n{}\n'.format(command) +
                 'Exit Code: {}\nOutput:\n{}'.format(exitCode, output))
         else:
-            error_msg = 'Error running commend:\n{}\n'.format(command)
+            error_msg = 'Error running command:\n{}\n'.format(command)
             error_msg += 'Exit Code: {}\nOutput:\n{}'.format(exitCode, output)
             raise ValueError(error_msg)
 
