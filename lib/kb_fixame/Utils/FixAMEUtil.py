@@ -253,7 +253,7 @@ class FixAMEUtil:
         for file_name in result_files:
             log(file_name)
             if file_name.endswith('fixame_report.tsv'):
-                report_list = open(file_name).readlines()
+                report_list = open(os.path.join(result_directory, file_name)).readlines()
 
                 for line in report_list[1:]:
                     line = line.strip().split('\t')
