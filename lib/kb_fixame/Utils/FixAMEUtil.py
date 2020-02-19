@@ -81,7 +81,7 @@ class FixAMEUtil:
         result_file_path = []
 
         reads = self.ru.download_reads({'read_libraries': reads_list,
-                                        'interleaved': 'true'})['files']
+                                        'interleaved': 'false'})['files']
 
         for read_obj in reads_list:
             files = reads[read_obj]['files']
@@ -117,14 +117,19 @@ class FixAMEUtil:
 
         command += '-i {} '.format(params.get('contig_file_path'))
 
-        if params.get('reads_list_file'):
-            read_list_file_list = open(params.get('reads_list_file')).readlines()
-            if len(read_list_file_list) == 1:
-                read_files_list = read_list_file_list[0]
-                read_files_list = [column.strip() for column in read_files_list]
-                forward_read, reverse_read = read_files_list
-                command += '-f {} '.format(forward_read)
-                command += '-r {} '.forward(reverse_read)
+        try:
+            if params.get('reads_list_file'):
+                reads_list_file_list = open(params.get('reads_list_file')).readlines()
+                print(reads_list_file_list)
+                if len(reads_list_file_list) == 2:
+                #    reads_files_list = reads_list_file_list[0]
+                    reads_files_list = [column.strip() for column in reads_files_list]
+                    forward_read, reverse_read = reads_files_list
+                    command += '-f {} '.format(forward_read)
+                    command += '-r {} '.forward(reverse_read)
+        except:
+            print(reads_list_file_list)
+
 
         if params.get('min_contig_length'):
             command += '-l {} '.format(params.get('min_contig_length'))
