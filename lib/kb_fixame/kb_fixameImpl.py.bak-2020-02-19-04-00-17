@@ -24,7 +24,7 @@ class kb_fixame:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/rohansachdeva/kb_fixame.git"
-    GIT_COMMIT_HASH = "8104f88e026b419dd84d9d00483c53b93bdbf10a"
+    GIT_COMMIT_HASH = "774bd3576ccd1663d869a2ca5ae8a83ae1b76fa0"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
