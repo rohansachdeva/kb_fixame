@@ -142,6 +142,8 @@ class FixAMEUtil:
 
         log('Generated FixAME.py command: {}'.format(command))
 
+        print(command)
+
         return command
 
     def _generate_output_file_list(self, result_directory):
@@ -159,9 +161,9 @@ class FixAMEUtil:
         for root, dirs, files in os.walk(result_directory):
             print(root,dirs,files)
             for file in files:
-                if file == 'fixame_result.tsv':
+                if file.endswith('fixame_result.tsv'):
                     result_file = os.path.join(root, file)
-                elif file == 'fixame_report.tsv':
+                elif file.endswith('fixame_report.tsv'):
                     report_file = os.path.join(root, file)
 
 
@@ -239,7 +241,7 @@ class FixAMEUtil:
         result_files = os.listdir(result_directory)
 
         for file_name in result_files:
-            if file_name == 'fixame_report.tsv':
+            if file_name.endswith('fixame_report.tsv'):
                 report_list = open(file_name).readlines()
 
                 for line in report_list[1:]:
