@@ -254,10 +254,12 @@ class FixAMEUtil:
             log(file_name)
             if file_name.endswith('fixame_report.tsv'):
                 report_list = open(os.path.join(result_directory, file_name)).readlines()
-
+                log(report_list)
                 for line in report_list[1:]:
+                    log(line)
                     line = line.strip().split('\t')
                     feature_error_type, count = line
+                    log(feature_error_type, count)
                     report_dict[feature_error_type] = count
 
                 type_local_assembly_error_bp = report_dict['local_assembly_error']
