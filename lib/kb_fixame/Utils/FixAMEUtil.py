@@ -217,7 +217,7 @@ class FixAMEUtil:
                             'description': 'HTML summary report for FixAMEApp'})
         return html_report
 
-    def _generate_overview_info(self, assembly_ref, result_directory, report_file):
+    def _generate_overview_info(self, assembly_ref, result_directory):
         assembly = self.dfu.get_objects({'object_refs': [assembly_ref]})['data'][0]
         input_contig_count = assembly.get('data').get('num_contigs')
         total_contig_length = 0
@@ -271,7 +271,7 @@ class FixAMEUtil:
         output_files = self._generate_output_file_list(result_directory)
 
         output_html_files = self._generate_html_report(result_directory,
-                                                       params.get('assembly_ref'))
+                                                       params.get('assembly_ref')
 
         created_objects = []
         # created_objects.append({"ref": binned_contig_obj_ref,
