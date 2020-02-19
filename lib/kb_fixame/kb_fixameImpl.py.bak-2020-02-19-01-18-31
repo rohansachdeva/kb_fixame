@@ -2,6 +2,7 @@
 #BEGIN_HEADER
 import os
 import json
+import psutil
 
 from kb_fixame.Utils.FixAMEUtil import FixAMEUtil
 #END_HEADER
@@ -24,7 +25,7 @@ class kb_fixame:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/rohansachdeva/kb_fixame.git"
-    GIT_COMMIT_HASH = "3d5fcefdecc3fc30dfef52430c9cc4db46546edf"
+    GIT_COMMIT_HASH = "5387d393c695a9fc7ece5efc55845a91fd61917f"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
