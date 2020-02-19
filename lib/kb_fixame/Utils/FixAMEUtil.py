@@ -5,7 +5,6 @@ import subprocess
 import sys
 import time
 import uuid
-import psutil
 
 from installed_clients.AssemblyUtilClient import AssemblyUtil
 from installed_clients.DataFileUtilClient import DataFileUtil
@@ -141,8 +140,8 @@ class FixAMEUtil:
 
         command += '-m 1 '
 
-        threads = psutil.cpu_count() * self.THREADS_PER_CORE
-        command += '-t {} '.format(threads)
+        # threads = psutil.cpu_count() * self.THREADS_PER_CORE
+        # command += '-t {} '.format(threads)
 
         log('Generated FixAME.py command: {}'.format(command))
 
