@@ -220,7 +220,7 @@ class FixAMEUtil:
         Overview_Content += '<p>Total Potentially Circular Sequence Length: {}</p>'.format(type_potential_circular_length)
         Overview_Content += '<p>Total High Variability Basepairs: {}</p>'.format(type_high_variability_bp)
         Overview_Content += '<p>Total Error Basepairs: {}</p>'.format(total_error_bp)
-        Overview_Content += '<p>Total Percent Error Basepairs: {}</p>'.format(percent_bp)
+        Overview_Content += '<p>Total Percent Error Basepairs: {}</p>'.format(percent_error_bp)
 
         with open(result_file_path, 'w') as result_file:
             with open(os.path.join(os.path.dirname(__file__), 'report_template.html'),
