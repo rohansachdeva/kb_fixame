@@ -12,9 +12,6 @@ RUN apt-get update && apt-get install -y samtools wget build-essential zlib1g-de
 
 RUN pip install Cython && pip install biopython regex psutil xopen pandas pysam
 
-#RUN mkdir FixAME && \
-#	cd FixAME && \
-#	wget https://gist.githubusercontent.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df043d/raw/9fcfcaff6d43974fca225a74af4732980957c9a9/FixAME.py && \
 RUN git clone https://gist.github.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df043d && \
 	mv 86bcf2cc974b2c72235638f5e5df043d FixAME && \
 	chmod a+x FixAME/FixAME.py && \
@@ -24,9 +21,9 @@ RUN git clone https://gist.github.com/rohansachdeva/86bcf2cc974b2c72235638f5e5df
 	chmod -R a+x bbmap/* && \
 	cp -r bbmap/* /kb/deployment/bin #&& \
 
-#	apt-get purge -y build-essential wget && \
-#	apt-get autoremove -y && \
-#	apt-get clean
+	apt-get purge -y wget build-essential  && \
+	apt-get autoremove -y && \
+	apt-get clean
 
 # -----------------------------------------
 
