@@ -153,8 +153,8 @@ class FixAMEUtil:
 
         output_directory = os.path.join(self.scratch, str(uuid.uuid4()))
         self._mkdir_p(output_directory)
-        result_file = os.path.join(output_direct, 'fixame_result.tsv')
-        report_file = os.path.join(output_direct, 'fixame_report.tsv')
+        result_file = os.path.join(output_directory, 'fixame_result.tsv')
+        report_file = os.path.join(output_directory, 'fixame_report.tsv')
 
         output_files.append({'path': result_file,
                              'name': os.path.basename(result_file),
@@ -236,7 +236,7 @@ class FixAMEUtil:
                 for line in report_list[1:]:
                     line = line.strip().split('\t')
                     feature_error_type, count = line
-                    report_dict[feature_error_type] = count
+                    report_dict[feature_error_type] = int(count)
 
                 type_local_assembly_error_bp = report_dict['local_assembly_error']
                 type_palindrome_length = report_dict['palindrome']
