@@ -125,7 +125,7 @@ class FixAMEUtil:
                 reads_list_file_list = [read_file.strip() for read_file in reads_list_file_list]
                 forward_read, reverse_read = reads_list_file_list
                 command += '-f {} '.format(forward_read)
-                command += '-r {} '.forward(reverse_read)
+                command += '-r {} '.format(reverse_read)
 
         if params.get('min_contig_length'):
             command += '-l {} '.format(params.get('min_contig_length'))
