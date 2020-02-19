@@ -10,7 +10,7 @@ MAINTAINER Rohan Sachdeva
 # To install all the dependencies
 RUN apt-get update && apt-get install -y samtools wget build-essential
 
-RUN pip install Cython && pip install biopython regex psutil xopen pandas pysam
+RUN pip install --upgrade pip && pip install Cython && pip install biopython regex psutil xopen pandas pysam
 
 RUN mkdir FixAME && \
 	cd FixAME && \
