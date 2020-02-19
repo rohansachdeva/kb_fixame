@@ -163,7 +163,7 @@ class FixAMEUtil:
         log(result_directory)
 
         for root, dirs, files in os.walk(result_directory):
-            log(root, dirs, files)
+            log((root, dirs, files))
             for file in files:
                 if file.endswith('fixame_result.tsv'):
                     result_file = os.path.join(root, file)
