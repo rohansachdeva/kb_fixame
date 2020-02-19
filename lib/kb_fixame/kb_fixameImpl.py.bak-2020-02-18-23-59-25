@@ -71,15 +71,6 @@ class kb_fixame:
         # ctx is the context object
         # return variables are: returnVal
         #BEGIN run_kb_fixame
-        print('--->\nRunning kb_fixame.run_kb_fixame\nparams:')
-        print(json.dumps(params, indent=1))
-
-        for key, value in params.items():
-            if isinstance(value, str):
-                params[key] = value.strip()
-
-        fixame_runner = FixAMEUtil(self.config)
-        returnVal = fixame_runner.run_kb_fixame(params)
         #END run_kb_fixame
 
         # At some point might do deeper type checking...
