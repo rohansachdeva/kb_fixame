@@ -83,20 +83,19 @@ class FixAMEUtil:
         reads = self.ru.download_reads({'read_libraries': reads_list,
                                         'interleaved': 'false'})['files']
 
-        # for read_obj in reads_list:
-        #     files = reads[read_obj]['files']
-        #     result_file_path.append(files['fwd'])
-        #     if 'rev' in files and files['rev'] is not None:
-        #         result_file_path.append(files['rev'])
+        for read_obj in reads_list:
+            files = reads[read_obj]['files']
+            result_file_path.append(files['fwd'])
+            if 'rev' in files and files['rev'] is not None:
+                result_file_path.append(files['rev'])
 
-        # log('Saving reads file path(s) to: {}'.format(result_file))
-        # with open(result_file, 'w') as file_handler:
-        #     for item in result_file_path:
-        #         file_handler.write("{}\n".format(item))
+        log('Saving reads file path(s) to: {}'.format(result_file))
+        with open(result_file, 'w') as file_handler:
+            for item in result_file_path:
+                file_handler.write("{}\n".format(item))
 
-        # return result_file
+        return result_file
 
-        return reads_list
 
     def _get_contig_file(self, assembly_ref):
         """
@@ -125,7 +124,7 @@ class FixAMEUtil:
                 print('entry',reads_list_file_list)
                 if len(reads_list_file_list) == 2:
                 #    reads_files_list = reads_list_file_list[0]
-                    reads_list_file_list = [column.strip() for column in reads_files_list]
+                    reads_list_file_list = [column.strip() for column in reads_list_file_list]
                     forward_read, reverse_read = reads_list_file_list
                     command += '-f {} '.format(forward_read)
                     command += '-r {} '.forward(reverse_read)
