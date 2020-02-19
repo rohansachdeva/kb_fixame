@@ -119,6 +119,18 @@ class FixAMEUtil:
 
         command += '-i {} '.format(params.get('contig_file_path'))
 
+        command += '-o fixame_result.tsv '
+
+        command += '-e fixame_report.tsv '
+
+        if params.get('min_contig_length'):
+            command += '-l {} '.format(params.get('min_contig_length'))
+
+        command += '-m 1 '
+
+        threads = psutil.cpu_count()
+        command += '-t {} '.format(threads)
+
         if params.get('reads_list_file'):
             reads_list_file_list = open(params.get('reads_list_file')).readlines()
             print('entry', reads_list_file_list)
@@ -127,18 +139,6 @@ class FixAMEUtil:
                 forward_read, reverse_read = reads_list_file_list
                 command += '-f {} '.format(forward_read)
                 command += '-r {} '.format(reverse_read)
-
-        if params.get('min_contig_length'):
-            command += '-l {} '.format(params.get('min_contig_length'))
-
-        command += '-o fixame_result.tsv '
-
-        command += '-e fixame_report.tsv '
-
-        command += '-m 1 '
-
-        threads = psutil.cpu_count()
-        command += '-t {} '.format(threads)
 
         log('Generated FixAME.py command: {}'.format(command))
 
@@ -240,7 +240,10 @@ class FixAMEUtil:
 
         result_files = os.listdir(result_directory)
 
+        print(result_files)
+
         for file_name in result_files:
+            print(file_name)
             if file_name.endswith('fixame_report.tsv'):
                 report_list = open(file_name).readlines()
 
