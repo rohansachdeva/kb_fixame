@@ -137,7 +137,7 @@ class FixAMEUtil:
 
         command += '-m 1 '
 
-        threads = psutil.cpu_count() * self.THREADS_PER_CORE
+        threads = psutil.cpu_count()
         command += '-t {} '.format(threads)
 
         log('Generated FixAME.py command: {}'.format(command))
