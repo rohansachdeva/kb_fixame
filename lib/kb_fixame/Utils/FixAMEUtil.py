@@ -169,7 +169,7 @@ class FixAMEUtil:
 
         return output_files
 
-    def _generate_html_report(self, result_directory, assembly_ref, binned_contig_obj_ref, header):
+    def _generate_html_report(self, result_directory, assembly_ref):
         """
         _generate_html_report: generate html summary report
         """
@@ -272,8 +272,7 @@ class FixAMEUtil:
 
         output_html_files = self._generate_html_report(result_directory,
                                                        params.get('assembly_ref'),
-                                                       binned_contig_obj_ref,
-                                                       params.get('out_header'))
+                                                       binned_contig_obj_ref)
 
         created_objects = []
         # created_objects.append({"ref": binned_contig_obj_ref,
