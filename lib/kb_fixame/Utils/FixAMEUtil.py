@@ -271,8 +271,7 @@ class FixAMEUtil:
         output_files = self._generate_output_file_list(result_directory)
 
         output_html_files = self._generate_html_report(result_directory,
-                                                       params.get('assembly_ref'),
-                                                       binned_contig_obj_ref)
+                                                       params.get('assembly_ref'))
 
         created_objects = []
         # created_objects.append({"ref": binned_contig_obj_ref,
