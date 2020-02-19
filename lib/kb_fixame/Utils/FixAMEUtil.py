@@ -113,7 +113,7 @@ class FixAMEUtil:
         _generate_command: generate FixAME params
         """
 
-        command = self.os.path.join(FIXAME_TOOLKIT_PATH, 'FixAME.py')
+        command = self.FIXAME_TOOLKIT_PATH + '/FixAME.py'
 
         command += '-i {} '.format(params.get('contig_file_path'))
 
