@@ -35,7 +35,7 @@ parameters :
 
     reads_list :
         ui-name : Read Library Object
-        short-hint : A list of reads object (PairedEndLibrary/SingleEndLibrary) upon which MaxBin will be run.
+        short-hint : A list of reads object (PairedEndLibrary/SingleEndLibrary) that FixAME will use.
 
     min_contig_length :
         ui-name : Minimum Contig Length
@@ -48,16 +48,16 @@ description : |
 
     <p><b>App Configuration Information:</b>
     <ul>
-      <li><b><i>Assembly Object:</i></b> The Assembly object is a collection of assembled genome fragments, called "contigs". These are the items that MaxBin2 will bin. Currently, only a single Assembly object is accepted by the MaxBin2 App.</li>
+      <li><b><i>Assembly Object:</i></b> The Assembly object is a collection of assembled genome fragments, called "contigs". These are the items that FixAME will find error and fix. Currently, only a single Assembly object is accepted by the FixAME App.</li>
       <li><b><i>Read Library Object:</i></b> Paired end reads are used to find errors and fix them.</li>
-      <li><b><i>Minimum Contig Length:</i></b> Some assemblies contain shorter contigs that may slow down analysis. These can be of reduced value  in that they may not contain complete genes and may be too short for statistically meaningful nucleotide composition profiles.  A value of 1000 bp is a reasonable cutoff. By setting a larger value (e.g., 2500 bp), once can minimize the contamination of bins by small contigs.</li>
+      <li><b><i>Minimum Contig Length:</i></b> Some assemblies contain shorter contigs that may slow down analysis. 
     </ul>
     </p>
 
     <p><b>App Output:</b>
     <ul>
-      <li><b><i>Output Bin Summary Report:</i></b> A table with the types of errors found and if they were fixed</li>
-      <li><b><i>Downloadable files:</i></b> The entire output of the FixAME run may be downloaded as a zip file.</li>
+      <li><b><i>Output Summary Report:</i></b> A table with the types of errors found and if they were fixed</li>
+      <li><b><i>Downloadable files:</i></b> Out of FixAME for download.</li>
     </ul>
     </p>
 

@@ -16,20 +16,13 @@ module kb_fixame {
     /*  
         required params:
         assembly_ref: Genome assembly object reference
-#        binned_contig_name: BinnedContig object name and output file header
         workspace_name: the name of the workspace it gets saved to.
         reads_list: list of reads object (PairedEndLibrary/SingleEndLibrary) upon which FixAME will be run
 
         optional params:
-#        thread: number of threads; default 1
-#        reassembly: specify this option if you want to reassemble the bins.
-                    note that at least one reads file needs to be designated.
-#        prob_threshold: minimum probability for EM algorithm; default 0.8
-#        markerset: choose between 107 marker genes by default or 40 marker genes
-#        min_contig_length: minimum contig length; default 1000
-#        plotmarker: specify this option if you want to plot the markers in each contig
+        min_contig_length: minimum contig length; default 1000
 
-#        ref: http://downloads.jbei.org/data/microbial_communities/MaxBin/README.txt
+        ref: Placeholder for FixAME ref
     */
     typedef structure {
         obj_ref assembly_ref;
