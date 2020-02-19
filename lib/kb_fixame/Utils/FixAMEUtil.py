@@ -258,7 +258,7 @@ class FixAMEUtil:
                 for line in report_list[1:]:
                     line = line.strip().split('\t')
                     feature_error_type, count = line
-                    report_dict[feature_error_type] = int(count)
+                    report_dict[feature_error_type] = count
 
                 type_local_assembly_error_bp = report_dict['local_assembly_error']
                 type_palindrome_length = report_dict['palindrome']
@@ -266,9 +266,13 @@ class FixAMEUtil:
                 type_potential_circular_length = report_dict['potential_circular']
                 type_high_variability_bp = report_dict['high_variability']
 
-                total_error_bp = sum([type_local_assembly_error_bp,
-                                             type_palindrome_length,
-                                             type_direct_repeat_length])
+                error_list = [type_local_assembly_error_bp, 
+                                type_palindrome_length,
+                                type_direct_repeat_length]
+
+                error_list = [int(i) for i in error_list]
+
+                total_error_bp = sum(error_list)
 
                 percent_error_bp = total_error_bp / total_contig_length * 100
                 percent_error_bp = round(total_error_bp, 5)
