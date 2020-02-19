@@ -8,15 +8,7 @@ MAINTAINER Rohan Sachdeva
 
 
 # To install all the dependencies
-RUN apt-get update && apt-get install -y samtools wget build-essential
-#RUN apt-get update && apt-get install -y wget
-
-#RUN conda config --add channels defaults && \
-#	conda config --add channels bioconda && \ 
-#	conda config --add channels conda-forge
-
-#RUN conda install -c bioconda xopen bbmap samtools pysam 
-#RUN	conda install xopen bbmap samtools pysam biopython regex psutil pandas
+RUN apt-get update && apt-get install -y samtools wget build-essential default-jre
 
 RUN pip install --upgrade pip && pip install Cython && pip install biopython regex psutil xopen pandas pysam
 
@@ -29,7 +21,7 @@ RUN mkdir FixAME && \
 	wget 'https://downloads.sourceforge.net/project/bbmap/BBMap_38.76.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fbbmap%2Ffiles%2Flatest%2Fdownload&ts=1581407830' -O bbmap.tar.gz && \
 	tar zxvf bbmap.tar.gz && \
 	chmod +x bbmap/* && \
-	mv bbmap /kb/deployment/bin #&& \
+	mv bbmap/* /kb/deployment/bin #&& \
 
 #	apt-get purge -y build-essential wget && \
 #	apt-get autoremove -y && \
