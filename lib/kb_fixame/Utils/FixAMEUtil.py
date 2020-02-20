@@ -250,8 +250,7 @@ class FixAMEUtil:
                 type_potential_circular_length = report_dict['potential_circular']
                 type_high_variability_bp = report_dict['high_variability']
 
-                error_list = [type_local_assembly_error_bp, 
-                                type_palindrome_length,
+                error_list = [type_local_assembly_error_bp, type_palindrome_length,
                                 type_direct_repeat_length]
 
                 error_list = [int(i) for i in error_list]
@@ -259,7 +258,7 @@ class FixAMEUtil:
                 total_error_bp = sum(error_list)
 
                 percent_error_bp = total_error_bp / total_contig_length * 100
-                percent_error_bp = round(total_error_bp, 5)
+                percent_error_bp = round(percent_error_bp, 5)
 
                 return (input_contig_count,
                         total_contig_length,
